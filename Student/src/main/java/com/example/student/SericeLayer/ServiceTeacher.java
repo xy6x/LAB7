@@ -1,0 +1,41 @@
+package com.example.student.SericeLayer;
+
+import com.example.student.ModelLayer.ModelLayer;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+@Service
+public class ServiceTeacher {
+    public ArrayList<ModelLayer> model =new ArrayList<>();
+
+    public ArrayList<ModelLayer> getAr(){
+
+        return model;
+    }
+    public void addModel(ModelLayer mod){
+
+        model.add(mod);
+    }
+    public boolean UpdateModel(String id,ModelLayer mod){
+        for (int i = 0; i <=model.size() ; i++) {
+            ArrayList<ModuleLayer> m =new ArrayList<>();
+
+            if (model.get(i).getId().equals(id)) {
+                model.set(i,mod);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean deleteModel(String id) {
+        for (int i = 0; i <= model.size(); i++) {
+            if (!model.get(i).getId().equals(id)) {
+                continue;
+            }
+            model.remove(i);
+            return true;
+
+        }
+        return false;
+    }
+}
