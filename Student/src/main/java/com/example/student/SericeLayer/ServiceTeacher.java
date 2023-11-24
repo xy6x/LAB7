@@ -54,5 +54,15 @@ public class ServiceTeacher {
         }
 
     }
+    public ArrayList<ModelLayer>  getCurricula(String id){
+        ArrayList<ModelLayer> teacher =new ArrayList<>();
+        for (int i = 0; i <model.size() ; i++) {
+            if (model.get(i).getId().equals(id)) {
+                teacher.add(model.get(i));
+            }
+
+        }
+        return teacher;
+    }
 
 }

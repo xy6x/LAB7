@@ -58,5 +58,9 @@ public ResponseEntity getTeacher(){
         ArrayList<ModelLayer> z =serviceTeacher.searchTeacher(position);
         return z;
     }
-
+    @GetMapping("/curr/{id}")
+    public ArrayList<ModelLayer> getCurricula(@PathVariable String id) {
+        ArrayList<ModelLayer> cur = serviceTeacher.getCurricula(id);
+        return cur;
+    }
 }

@@ -64,8 +64,7 @@ public class StudentController {
         ArrayList<ModelLayer> v = serviceStudent.searchStudent(position);
         return v;
     }
-    @GetMapping("/get/{id}")
-
+    @GetMapping("/curr/{id}")
     public ArrayList<ModelLayer> getCurricula(@PathVariable String id) {
         ArrayList<ModelLayer> curr = serviceStudent.curricula(id);
         return curr;
