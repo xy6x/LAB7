@@ -19,18 +19,13 @@ public class ModelLayer {
     @Pattern(regexp = "^[a-zA-Z]*$+",message = "please enter string")
     @Size(min = 2)
     @Pattern(regexp = "(Teacher|student|Administrative)")
-
     private String position;
     @NotNull(message = "please enter college")
 
     private String college;
     @NotNull(message = "please enter Curricula")
-
     private String Curricula;
-
-
     @NotNull(message = "please enter level")
-
     private int level;
     @NotNull(message = "please enter salary")
     private double salary;

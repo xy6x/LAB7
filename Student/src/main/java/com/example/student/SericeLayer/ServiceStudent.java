@@ -40,5 +40,27 @@ public class ServiceStudent {
             }
             return false;
         }
+        public ArrayList<ModelLayer> searchStudent(String position){
+        ArrayList<ModelLayer> stu =new ArrayList<>();
+            for (int i = 0; i <modelStudent.size() ; i++) {
+                if (modelStudent.get(i).getPosition().equals(position)) {
+                 stu.add(modelStudent.get(i));
+                }
 
-}
+            }
+            return stu;
+        }
+
+        public ArrayList<ModelLayer>  curricula(String id){
+            ArrayList<ModelLayer> st =new ArrayList<>();
+            for (int i = 0; i <modelStudent.size() ; i++) {
+                if (modelStudent.get(i).getPosition().equals(id)) {
+                    st.add(modelStudent.get(i));
+                }
+
+            }
+            return st;
+        }
+        }
+
+

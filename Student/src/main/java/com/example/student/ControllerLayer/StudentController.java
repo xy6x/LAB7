@@ -13,26 +13,30 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/Stu")
 @RequiredArgsConstructor
 public class StudentController {
     private final ServiceStudent serviceStudent;
-    public ResponseEntity getTeacher(){
-        ArrayList<ModelLayer> m1 =serviceStudent.getAr();
+
+    @GetMapping("/get")
+    public ResponseEntity getStudent() {
+        ArrayList<ModelLayer> m1 = serviceStudent.getAr();
         return ResponseEntity.status(HttpStatus.OK).body(m1);
     }
+
     @PostMapping("/add")
-    public ResponseEntity addArticle(@RequestBody @Valid ModelLayer model, Errors errors) {
+    public ResponseEntity addStudent(@RequestBody @Valid ModelLayer model, Errors errors) {
         if (errors.hasErrors()) {
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
 
         }
         serviceStudent.addModel(model);
-        return ResponseEntity.status(HttpStatus.OK).body("Article added");
+        return ResponseEntity.status(HttpStatus.OK).body("Student added");
     }
+
     @PutMapping("/put/{id}")
-    public ResponseEntity updateArticle(@PathVariable String id, @RequestBody @Valid ModelLayer model, Errors errors) {
+    public ResponseEntity updateStudent(@PathVariable String id, @RequestBody @Valid ModelLayer model, Errors errors) {
         if (errors.hasErrors()) {
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
@@ -44,8 +48,9 @@ public class StudentController {
         }
         return ResponseEntity.status(400).body("wrong id");
     }
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteArticle(@PathVariable String id) {
+    public ResponseEntity deleteStudent(@PathVariable String id) {
         boolean isDelete = serviceStudent.deleteMo(id);
         if (isDelete) {
             return ResponseEntity.status(HttpStatus.OK).body("blog deleted");
@@ -54,4 +59,15 @@ public class StudentController {
         return ResponseEntity.status(400).body("wrong id");
     }
 
+    @GetMapping("/get/{position}")
+    public ArrayList<ModelLayer> getPosition(@PathVariable String position) {
+        ArrayList<ModelLayer> v = serviceStudent.searchStudent(position);
+        return v;
+    }
+    @GetMapping("/get/{id}")
+
+    public ArrayList<ModelLayer> getCurricula(@PathVariable String id) {
+        ArrayList<ModelLayer> curr = serviceStudent.curricula(id);
+        return curr;
+    }
 }

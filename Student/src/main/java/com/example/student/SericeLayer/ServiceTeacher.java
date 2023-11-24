@@ -38,4 +38,21 @@ public class ServiceTeacher {
         }
         return false;
     }
+    public ArrayList<ModelLayer> searchTeacher(String position){
+        ArrayList<ModelLayer> tea =new ArrayList<>();
+        for (int i = 0; i <model.size() ; i++) {
+            if (model.get(i).getPosition().equals(position)) {
+                tea.add(model.get(i));
+            }
+
+        }
+        return tea;
+    }
+    public void  getRange(int time){
+        for (ModelLayer m:model) {
+          int a= m.getOfficeHours()+m.getTeachingHours();
+        }
+
+    }
+
 }
