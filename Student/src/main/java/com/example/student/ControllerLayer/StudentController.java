@@ -2,6 +2,7 @@ package com.example.student.ControllerLayer;
 
 
 import com.example.student.ModelLayer.ModelLayer;
+import com.example.student.ModelLayer.StudentModel;
 import com.example.student.SericeLayer.ServiceStudent;
 import com.example.student.SericeLayer.ServiceTeacher;
 import jakarta.validation.Valid;
@@ -20,12 +21,12 @@ public class StudentController {
 
     @GetMapping("/get")
     public ResponseEntity getStudent() {
-        ArrayList<ModelLayer> m1 = serviceStudent.getAr();
+        ArrayList<StudentModel> m1 = serviceStudent.getAr();
         return ResponseEntity.status(HttpStatus.OK).body(m1);
     }
 
     @PostMapping("/add")
-    public ResponseEntity addStudent(@RequestBody @Valid ModelLayer model, Errors errors) {
+    public ResponseEntity addStudent(@RequestBody @Valid StudentModel model, Errors errors) {
         if (errors.hasErrors()) {
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
@@ -36,7 +37,7 @@ public class StudentController {
     }
 
     @PutMapping("/put/{id}")
-    public ResponseEntity updateStudent(@PathVariable String id, @RequestBody @Valid ModelLayer model, Errors errors) {
+    public ResponseEntity updateStudent(@PathVariable String id, @RequestBody @Valid StudentModel model, Errors errors) {
         if (errors.hasErrors()) {
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
@@ -60,13 +61,19 @@ public class StudentController {
     }
 
     @GetMapping("/get/{position}")
-    public ArrayList<ModelLayer> getPosition(@PathVariable String position) {
-        ArrayList<ModelLayer> v = serviceStudent.searchStudent(position);
+    public ArrayList<StudentModel> getPosition(@PathVariable String position) {
+        ArrayList<StudentModel> v = serviceStudent.searchStudent(position);
         return v;
     }
     @GetMapping("/curr/{id}")
-    public ArrayList<ModelLayer> getCurricula(@PathVariable String id) {
-        ArrayList<ModelLayer> curr = serviceStudent.curricula(id);
+    public ArrayList<StudentModel> getCurricula(@PathVariable String id) {
+        ArrayList<StudentModel> curr = serviceStudent.curricula(id);
         return curr;
     }
+    @GetMapping("/level/{level}")
+    public ResponseEntity getLevel(@PathVariable int level){
+        double lev =serviceStudent.getLevel(level);
+        return ResponseEntity.status(HttpStatus.OK).body(lev);
+    }
+
 }

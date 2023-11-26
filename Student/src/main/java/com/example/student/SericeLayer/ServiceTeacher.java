@@ -48,11 +48,14 @@ public class ServiceTeacher {
         }
         return tea;
     }
-    public void  getRange(int time){
+    public double getRange(int time){
         for (ModelLayer m:model) {
           int a= m.getOfficeHours()+m.getTeachingHours();
+            return  a= m.getOfficeHours()+m.getTeachingHours();
+
         }
 
+        return 0;
     }
     public ArrayList<ModelLayer>  getCurricula(String id){
         ArrayList<ModelLayer> teacher =new ArrayList<>();

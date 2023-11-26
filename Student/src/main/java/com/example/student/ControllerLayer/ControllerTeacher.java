@@ -54,13 +54,15 @@ public ResponseEntity getTeacher(){
         }
         return ResponseEntity.status(400).body("wrong id");
     }
-    public ArrayList<ModelLayer> position(@PathVariable String position){
-        ArrayList<ModelLayer> z =serviceTeacher.searchTeacher(position);
-        return z;
-    }
+   
     @GetMapping("/curr/{id}")
     public ArrayList<ModelLayer> getCurricula(@PathVariable String id) {
         ArrayList<ModelLayer> cur = serviceTeacher.getCurricula(id);
         return cur;
+    }
+    @GetMapping("time")
+    public ResponseEntity getTime(int time){
+        double total =serviceTeacher.getRange(time);
+        return ResponseEntity.status(HttpStatus.OK).body(total);
     }
 }
